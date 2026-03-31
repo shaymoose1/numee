@@ -70,8 +70,8 @@
       const service = (data.get('service') || '').trim();
       const message = (data.get('message') || '').trim();
 
-      if (!name || !email || !phone) { alert('please fill in all required fields.'); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('please enter a valid email address.'); return; }
+      if (!name || !email || !phone) { alert('Please fill in all required fields.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
 
       const subject = encodeURIComponent(`booking enquiry – ${service || 'general'}`);
       const body    = encodeURIComponent(`name: ${name}\nemail: ${email}\nphone: ${phone}\nservice: ${service || 'n/a'}\n\nmessage:\n${message || 'n/a'}`);
