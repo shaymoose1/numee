@@ -401,8 +401,29 @@ function handleSubmit(e) {
 
   if (!valid) return;
 
-  // Show success overlay
-  document.getElementById('success-overlay').classList.add('show');
+  // Submit to Formspree
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  const data = new FormData(e.target);
+  fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(res => {
+    if (res.ok) {
+      document.getElementById('success-overlay').classList.add('show');
+    } else {
+      btn.textContent = 'Something went wrong - please call us on 0457 455 629';
+      btn.disabled = false;
+    }
+  })
+  .catch(() => {
+    btn.textContent = 'Something went wrong - please call us on 0457 455 629';
+    btn.disabled = false;
+  });
 }
 </script>
 </body>
