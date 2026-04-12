@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nu-Mee Clinic - Non-Surgical Body & Skin Treatments | Hawthorn VIC</title>
+  <meta name="description" content="Nu-Mee Clinic in Hawthorn offers expert non-surgical treatments: HIFU skin tightening, EMS body sculpting, fat cavitation, and ladies massage. Free consultations available." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── Hero ─────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--ink);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://www.numeeclinic.com.au/wp-content/uploads/2021/02/home1.png');
+      background-size: cover;
+      background-position: center top;
+      transform: scale(1.04);
+      transition: transform 8s ease;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(26,15,21,0.78) 0%,
+        rgba(26,15,21,0.55) 50%,
+        rgba(26,15,21,0.25) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: 100px 80px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11.5px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--pink-light);
+      margin-bottom: 24px;
+      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.15s both;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 28px; height: 2px;
+      background: var(--pink-light); border-radius: 1px;
+    }
+    .hero-h1 {
+      font-size: clamp(44px, 5.5vw, 78px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.28s both;
+    }
+    .hero-h1 span { color: var(--cyan); }
+    .hero-sub {
+      font-size: 17px; line-height: 1.75;
+      color: rgba(255,255,255,0.72);
+      max-width: 480px; margin-bottom: 40px;
+      animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.42s both;
+    }
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.55s both;
+    }
+    .hero-actions .btn-white {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(8px);
+    }
+    .hero-actions .btn-white:hover {
+      background: rgba(255,255,255,0.22);
+      transform: translateY(-1px);
+    }
+    .hero-stats {
+      position: absolute; bottom: 48px; left: 80px; right: 80px;
+      z-index: 2;
+      display: flex; gap: 0;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.7s both;
+    }
+    .hero-stat {
+      flex: 1; padding: 20px 28px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-size: 30px; font-weight: 700;
+      color: #fff; letter-spacing: -0.03em;
+      line-height: 1; margin-bottom: 4px;
+    }
+    .hero-stat-num span { color: var(--pink-light); }
+    .hero-stat-label {
+      font-size: 11.5px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── Treatments ──────────────────────────────────────── */
+    .treatments-section {
+      padding: 100px 56px;
+      background: var(--white);
+    }
+    .treatments-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; align-items: end;
+      margin-bottom: 60px;
+    }
+    .treatments-title { font-size: clamp(34px,3.5vw,54px); color: var(--ink); }
+    .treatments-title span { color: var(--pink); }
+    .treatments-desc {
+      font-size: 16px; line-height: 1.8; color: var(--muted);
+      max-width: 400px; justify-self: end; align-self: end;
+    }
+    .treatments-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .treatment-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease;
+    }
+    .treatment-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .treatment-card-img {
+      height: 220px;
+      position: relative; overflow: hidden;
+    }
+    .treatment-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .treatment-card-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,15,21,0.45) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .treatment-card:hover .treatment-card-img img { transform: scale(1.06); }
+    .treatment-card-body { padding: 28px; }
+    .treatment-card-tag { margin-bottom: 12px; }
+    .treatment-card-name {
+      font-size: 22px; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .treatment-card-desc {
+      font-size: 14.5px; line-height: 1.7;
+      color: var(--muted); margin-bottom: 22px;
+    }
+    .treatment-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .treatment-card-price { font-size: 13px; color: var(--muted); }
+    .treatment-card-price strong {
+      display: block; font-size: 26px; font-weight: 700;
+      color: var(--ink); letter-spacing: -0.02em; line-height: 1;
+    }
+    .treatment-card-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13.5px; font-weight: 600;
+      color: var(--pink);
+      padding: 9px 18px;
+      background: var(--pink-bg);
+      border-radius: 100px;
+      transition: background 0.2s, gap 0.2s;
+    }
+    .treatment-card-link:hover { background: rgba(232,25,106,0.15); gap: 8px; }
+
+    /* ── Why Nu-Mee ──────────────────────────────────────── */
+    .why-section {
+      padding: 100px 56px;
+      background: var(--bg-alt);
+    }
+    .why-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .why-img-block { position: relative; }
+    .why-img-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/5;
+    }
+    .why-img-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .why-chip {
+      position: absolute; bottom: -24px; right: -24px;
+      background: var(--pink);
+      color: #fff;
+      border-radius: var(--r);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-pink);
+      font-size: 13px; font-weight: 600;
+    }
+    .why-chip strong {
+      display: block;
+      font-size: 36px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 2px;
+    }
+    .why-content {}
+    .why-title {
+      font-size: clamp(32px,3.5vw,50px); color: var(--ink);
+      margin-bottom: 18px;
+    }
+    .why-title span { color: var(--pink); }
+    .why-desc {
+      font-size: 16px; line-height: 1.8; color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .why-features { display: flex; flex-direction: column; gap: 18px; }
+    .why-feature {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .why-feature:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 4px 16px rgba(10,190,200,0.1);
+    }
+    .why-feature-icon {
+      width: 46px; height: 46px; min-width: 46px;
+      background: var(--cyan-bg); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .why-feature h4 {
+      font-size: 15px; font-weight: 600; color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .why-feature p { font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+
+    /* ── Testimonials ────────────────────────────────────── */
+    .reviews-section {
+      padding: 100px 56px;
+      background: var(--white);
+    }
+    .reviews-header { text-align: center; margin-bottom: 56px; }
+    .reviews-title { font-size: clamp(32px,3.5vw,50px); color: var(--ink); }
+    .reviews-title span { color: var(--pink); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 28px;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .review-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .review-stars { display: flex; gap: 3px; margin-bottom: 14px; color: var(--pink); font-size: 17px; }
+    .review-text {
+      font-size: 14.5px; line-height: 1.75;
+      color: var(--ink-2); font-style: italic; margin-bottom: 20px;
+    }
+    .review-text::before { content: '\201C'; }
+    .review-text::after  { content: '\201D'; }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .review-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 15px; flex-shrink: 0;
+    }
+    .review-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+    .review-meta { font-size: 12px; color: var(--muted-light); }
+
+    /* ── Location ────────────────────────────────────────── */
+    .location-section {
+      padding: 100px 56px;
+      background: var(--bg-alt);
+    }
+    .location-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .location-info {}
+    .location-title { font-size: clamp(28px,3vw,42px); color: var(--ink); margin-bottom: 28px; }
+    .location-title span { color: var(--pink); }
+    .location-details { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
+    .location-detail {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 15px; color: var(--ink-2); line-height: 1.6;
+    }
+    .location-detail-icon {
+      width: 42px; height: 42px; min-width: 42px;
+      background: var(--cyan-bg); border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px;
+    }
+    .location-hours {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden; margin-bottom: 28px;
+    }
+    .hours-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { color: var(--muted); }
+    .hours-row .time { font-weight: 600; color: var(--ink); }
+    .hours-row .closed { color: var(--muted-light); font-weight: 400; }
+    .location-map {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+    }
+    .location-map iframe { display: block; width: 100%; height: 440px; }
+
+    /* ── CTA banner ──────────────────────────────────────── */
+    .cta-banner {
+      padding: 80px 56px;
+      background: var(--pink);
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-size: clamp(28px,3.5vw,48px);
+      color: #fff; margin-bottom: 14px;
+    }
+    .cta-banner p {
+      font-size: 17px; color: rgba(255,255,255,0.8);
+      margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto;
+      line-height: 1.7;
+    }
+    .cta-banner .btn-white-solid {
+      background: #fff; color: var(--pink);
+      font-weight: 700;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    }
+    .cta-banner .btn-white-solid:hover {
+      background: rgba(255,255,255,0.92); transform: translateY(-2px);
+    }
+
+    /* ── Animations ──────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-content { padding: 80px 28px 200px; }
+      .hero-stats { left: 28px; right: 28px; bottom: 32px; }
+      .treatments-section, .why-section, .reviews-section,
+      .location-section, .cta-banner { padding: 72px 28px; }
+      .treatments-header { grid-template-columns: 1fr; gap: 16px; }
+      .treatments-desc { justify-self: start; }
+      .treatments-grid { grid-template-columns: 1fr 1fr; }
+      .why-inner, .location-inner { grid-template-columns: 1fr; gap: 48px; }
+      .why-chip { bottom: -20px; right: 0; }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero-stat { padding: 16px 16px; }
+      .hero-stat-num { font-size: 24px; }
+      .treatments-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="brand_assets/Lotus.png" alt="Nu-Mee Clinic" />
+    <span class="nav-logo-text">nu-mee</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li>
+      <a href="#">
+        Treatments
+        <svg class="chevron" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <ul class="nav-dropdown">
+        <li><a href="hifu.html"><span class="dd-icon">🔊</span>HIFU - Skin Tightening</a></li>
+        <li><a href="ems.html"><span class="dd-icon">⚡</span>EMS Body Sculpting</a></li>
+        <li><a href="fat-cavitation.html"><span class="dd-icon">💧</span>Fat Cavitation</a></li>
+      </ul>
+    </li>
+    <li><a href="bookings.html">Bookings</a></li>
+  </ul>
+
+  <a href="bookings.html" class="nav-cta desktop-only">Book Now</a>
+
+  <button class="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mobile-nav">
+  <a href="index.html">Home</a>
+  <div class="mobile-section-label">Treatments</div>
+  <a href="hifu.html">🔊 &nbsp;HIFU - Skin Tightening</a>
+  <a href="ems.html">⚡ &nbsp;EMS Body Sculpting</a>
+  <a href="fat-cavitation.html">💧 &nbsp;Fat Cavitation</a>
+  <a href="bookings.html">Bookings</a>
+  <a href="bookings.html" class="mobile-cta">Book Now</a>
+</div>
+
+<div class="page-body">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Non-Surgical Beauty · Hawthorn VIC</div>
+      <h1 class="hero-h1">a new you<br>with <span>nu-mee</span></h1>
+      <p class="hero-sub">Expert non-surgical body sculpting, skin tightening, and wellness treatments. Real results - zero downtime.</p>
+      <div class="hero-actions">
+        <a href="bookings.html" class="btn btn-primary">Book Now</a>
+        <a href="#treatments" class="btn btn-white">Explore Treatments</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">5<span>★</span></div>
+        <div class="hero-stat-label">Google Rating</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">Treatments</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">0</div>
+        <div class="hero-stat-label">Days Downtime</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Free</div>
+        <div class="hero-stat-label">Consultations</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TREATMENTS ═══ -->
+  <section class="treatments-section" id="treatments">
+    <div class="treatments-header">
+      <div class="reveal">
+        <div class="section-label">Our Services</div>
+        <h2 class="treatments-title">Advanced <span>non-surgical</span><br>treatments</h2>
+      </div>
+      <p class="treatments-desc reveal">All treatments are non-invasive, clinically proven, and tailored to your goals. Results you can see - no surgery required.</p>
+    </div>
+    <div class="treatments-grid">
+      <div class="treatment-card reveal reveal-d1">
+        <div class="treatment-card-img">
+          <img src="brand_assets/Hifu.png" alt="HIFU Skin Tightening treatment">
+        </div>
+        <div class="treatment-card-body">
+          <div class="treatment-card-tag"><span class="tag tag-pink">Face &amp; Neck</span></div>
+          <h3 class="treatment-card-name">7D &amp; 12D HIFU</h3>
+          <p class="treatment-card-desc">High-intensity focused ultrasound lifts, tightens, and contours skin without surgery. The non-surgical facelift.</p>
+          <div class="treatment-card-footer">
+            <a href="hifu.html" class="treatment-card-link">
+              Learn more
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-card reveal reveal-d2">
+        <div class="treatment-card-img">
+          <img src="brand_assets/EMS-BODY.jpg" alt="EMS Body Sculpting treatment">
+        </div>
+        <div class="treatment-card-body">
+          <div class="treatment-card-tag"><span class="tag tag-cyan">Body Sculpting</span></div>
+          <h3 class="treatment-card-name">EMS Body Sculpting</h3>
+          <p class="treatment-card-desc">Electrical muscle stimulation tones and builds muscle while burning fat - like thousands of reps without the effort.</p>
+          <div class="treatment-card-footer">
+            <a href="ems.html" class="treatment-card-link">
+              Learn more
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-card reveal reveal-d3">
+        <div class="treatment-card-img">
+          <img src="brand_assets/Fat-Cavitation-Web.png" alt="Fat Cavitation treatment">
+        </div>
+        <div class="treatment-card-body">
+          <div class="treatment-card-tag"><span class="tag tag-cyan">Fat Reduction</span></div>
+          <h3 class="treatment-card-name">Fat Cavitation</h3>
+          <p class="treatment-card-desc">Ultrasonic waves break down stubborn fat deposits for a slimmer, smoother contour - no needles, no surgery.</p>
+          <div class="treatment-card-footer">
+            <a href="fat-cavitation.html" class="treatment-card-link">
+              Learn more
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHY NU-MEE ═══ -->
+  <section class="why-section">
+    <div class="why-inner">
+      <div class="why-img-block reveal">
+        <div class="why-img-card">
+          <img src="brand_assets/IMG_0291.jpg" alt="Nu-Mee Clinic storefront at 591 Burwood Road, Hawthorn" />
+        </div>
+        <div class="why-chip">
+          <strong>100%</strong>
+          Non-surgical
+        </div>
+      </div>
+
+      <div class="why-content">
+        <div class="section-label">Why Nu-Mee</div>
+        <h2 class="why-title reveal">Where expertise<br><span>meets results</span></h2>
+        <p class="why-desc reveal">At Nu-Mee Clinic, we combine cutting-edge technology with a warm, personal approach - every treatment plan is tailored to you.</p>
+        <div class="why-features">
+          <div class="why-feature reveal reveal-d1">
+            <div class="why-feature-icon">🎯</div>
+            <div>
+              <h4>Clinically Proven Technology</h4>
+              <p>Medical-grade 7D and 12D HIFU, EMS, and cavitation devices - the same technology used in leading clinics worldwide.</p>
+            </div>
+          </div>
+          <div class="why-feature reveal reveal-d2">
+            <div class="why-feature-icon">✨</div>
+            <div>
+              <h4>Zero Downtime</h4>
+              <p>All treatments are non-invasive. Walk in, walk out - back to your day feeling refreshed and confident.</p>
+            </div>
+          </div>
+          <div class="why-feature reveal reveal-d3">
+            <div class="why-feature-icon">💬</div>
+            <div>
+              <h4>Free Consultations</h4>
+              <p>We offer complimentary consultations to understand your goals and recommend the right plan - no pressure, no obligation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REVIEWS ═══ -->
+  <section class="reviews-section">
+    <div class="reviews-header reveal">
+      <div class="section-label">Client Reviews</div>
+      <h2 class="reviews-title">What our clients <span>say</span></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal reveal-d1">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">I wanted to wait for final results of my HIFU treatment with Lana before I posted my review and just on three months I must confess I love the results which are indeed noticeable. I'm just about to book another session to boost collagen.</p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div><div class="review-name">Sue Jones-Zdimirovic</div><div class="review-meta">HIFU Treatment · Google Review</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-d2">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Lana is amazing - I could see results after my HIFU procedure on my whole face and neck. My double chin is tighter and I could not be much happier. Money well spent and the results are spectacular!</p>
+        <div class="review-author">
+          <div class="review-avatar">J</div>
+          <div><div class="review-name">Jalett Arquilola</div><div class="review-meta">HIFU Treatment · Google Review</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-d3">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Lana is excellent - the service, pricing and care she provided was amazing. My HIFU treatment was amazing and I will definitely recommend her.</p>
+        <div class="review-author">
+          <div class="review-avatar">R</div>
+          <div><div class="review-name">Richard Raffaut</div><div class="review-meta">HIFU Treatment · Google Review</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-d1">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Thank you Lana for the wonderful experience. Everything was great - ease of booking, highly professional, thorough explanation of the treatment, and transparent pricing with no upselling, unlike many other places.</p>
+        <div class="review-author">
+          <div class="review-avatar">J</div>
+          <div><div class="review-name">Jlsk Jlsk</div><div class="review-meta">Google Review · Local Guide</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-d2">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Lana is professional, easy going and super accommodating. I've been to a few places for fat cavitation now but I'll keep going back to Nu-Mee. My results have been pretty good!!</p>
+        <div class="review-author">
+          <div class="review-avatar">L</div>
+          <div><div class="review-name">Lisa</div><div class="review-meta">Fat Cavitation · Google Review · Local Guide</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-d3">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">NuMee clinic is hands down the best place for HIFU treatment. My mother and I have been to other places so many times and thought they were good until we came here. The difference is night and day.</p>
+        <div class="review-author">
+          <div class="review-avatar">J</div>
+          <div><div class="review-name">Jo Papadopoulos</div><div class="review-meta">HIFU Treatment · Google Review</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LOCATION ═══ -->
+  <section class="location-section">
+    <div class="location-inner">
+      <div class="location-info reveal">
+        <div class="section-label">Find Us</div>
+        <h2 class="location-title">Visit <span>Nu-Mee Clinic</span></h2>
+        <div class="location-details">
+          <div class="location-detail">
+            <div class="location-detail-icon">📍</div>
+            <div>591 Burwood Road<br>Hawthorn VIC 3122</div>
+          </div>
+          <div class="location-detail">
+            <div class="location-detail-icon">📞</div>
+            <div><a href="tel:0457455629" style="color:inherit;">0457 455 629</a><br><small style="color:var(--muted)">Call or text Lana</small></div>
+          </div>
+        </div>
+        <div class="location-hours">
+          <div class="hours-row"><span class="day">Monday - Saturday</span><span class="time">10:00 AM - 6:00 PM</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="closed">Closed</span></div>
+        </div>
+        <a href="bookings.html" class="btn btn-primary">Book an Appointment</a>
+      </div>
+      <div class="location-map reveal reveal-d1">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.574430502729!2d145.043679!3d-37.823436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad643c4c8e83ce9%3A0x79b8c5b0dbd4477!2sNu-Mee%20Clinic!5e0!3m2!1sen!2sau!4v1775710698303!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA BANNER ═══ -->
+  <section class="cta-banner">
+    <div class="reveal">
+      <h2>Ready for your free consultation?</h2>
+      <p>No obligation. Expert advice tailored to your goals. Walk out feeling confident about your journey.</p>
+      <a href="bookings.html" class="btn btn-white-solid">Book Now - It's Free</a>
+    </div>
+  </section>
+
+</div><!-- /page-body -->
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="brand_assets/Lotus.png" alt="Nu-Mee" />
+        <span class="footer-logo-text">nu-mee clinic</span>
+      </div>
+      <p class="footer-tagline">Expert non-surgical body and skin treatments in Hawthorn, VIC. Helping you look and feel your most confident self.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/NuMeeClinic" target="_blank" rel="noopener" class="social-btn" title="Facebook">f</a>
+        <a href="https://www.instagram.com/numeeclinic" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1.5" y="1.5" width="12" height="12" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7.5" cy="7.5" r="2.8" stroke="currentColor" stroke-width="1.3"/><circle cx="11" cy="4" r="0.75" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Treatments</h5>
+      <ul>
+        <li><a href="hifu.html">7D HIFU</a></li>
+        <li><a href="hifu.html">12D HIFU</a></li>
+        <li><a href="ems.html">EMS Body Sculpting</a></li>
+        <li><a href="fat-cavitation.html">Fat Cavitation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Clinic</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="bookings.html">Book Appointment</a></li>
+        <li><a href="bookings.html">Free Consultation</a></li>
+        <li><a href="tel:0457455629">0457 455 629</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Opening Hours</h5>
+      <ul class="footer-hours">
+        <li><span>Mon - Sat</span><span>10am - 6pm</span></li>
+        <li><span>Sunday</span><span style="color:rgba(255,255,255,0.3)">Closed</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Nu-Mee Clinic. All Rights Reserved.</p>
+    <p class="footer-address">591 Burwood Road, Hawthorn VIC 3122 · <a href="tel:0457455629">0457 455 629</a></p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Ken Burns on hero bg
+  const bg = document.getElementById('heroBg');
+  if (bg) { const img = new Image(); img.onload = () => bg.classList.add('loaded'); img.src = bg.style.backgroundImage?.match(/url\('(.+?)'\)/)?.[1] || ''; bg.classList.add('loaded'); }
+</script>
+</body>
+</html>

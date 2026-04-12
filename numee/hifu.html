@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HIFU Skin Tightening - Nu-Mee Clinic | Hawthorn VIC</title>
+  <meta name="description" content="Non-surgical HIFU skin tightening and lifting at Nu-Mee Clinic, Hawthorn. 7D and 12D HIFU for face, neck and body. Free consultations available." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── Treatment page hero ─────────────────────────────── */
+    .treatment-hero {
+      background-image: url('brand_assets/20190407VividTreatments-12.webp');
+      background-size: cover;
+      background-position: center 30%;
+      padding: 100px 56px 80px;
+      position: relative; overflow: hidden;
+    }
+    .treatment-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(26,15,21,0.82) 0%, rgba(26,15,21,0.55) 60%, rgba(26,15,21,0.28) 100%);
+    }
+    .treatment-hero-inner {
+      max-width: 800px; position: relative; z-index: 1;
+    }
+    .treatment-hero .section-label { color: var(--pink-light); }
+    .treatment-hero .section-label::before { background: var(--pink-light); }
+    .treatment-hero h1 {
+      font-size: clamp(40px,5vw,68px);
+      color: #fff; margin-bottom: 20px;
+    }
+    .treatment-hero h1 span { color: var(--cyan); }
+    .treatment-hero-sub {
+      font-size: 18px; line-height: 1.75;
+      color: rgba(255,255,255,0.68);
+      max-width: 580px; margin-bottom: 36px;
+    }
+    .treatment-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Page layout ─────────────────────────────────────── */
+    .treatment-page { padding: 80px 56px; }
+    .treatment-page-inner {
+      display: grid; grid-template-columns: 1fr 360px;
+      gap: 64px; align-items: start;
+      max-width: 1280px; margin: 0 auto;
+    }
+
+    /* ── Main content ────────────────────────────────────── */
+    .content-section { margin-bottom: 60px; }
+    .content-section h2 {
+      font-size: clamp(24px,2.5vw,34px); color: var(--ink);
+      margin-bottom: 18px;
+    }
+    .content-section h2 span { color: var(--pink); }
+    .content-section p {
+      font-size: 15.5px; line-height: 1.8; color: var(--ink-2);
+      margin-bottom: 14px;
+    }
+
+    .benefits-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin-top: 20px;
+    }
+    .benefit-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 16px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+    }
+    .benefit-icon {
+      width: 36px; height: 36px; min-width: 36px;
+      background: var(--cyan-bg); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+    }
+    .benefit-item h4 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+    .benefit-item p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+
+    .process-steps { display: flex; flex-direction: column; gap: 0; margin-top: 20px; }
+    .process-step {
+      display: flex; gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .process-step:last-child { border-bottom: none; }
+    .step-num {
+      width: 40px; height: 40px; min-width: 40px;
+      background: var(--pink); color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700;
+    }
+    .step-text h4 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+    .step-text p { font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* ── Comparison: 7D vs 12D ───────────────────────────── */
+    .comparison {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px; margin-top: 20px;
+    }
+    .comparison-card {
+      border: 2px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    .comparison-card.featured { border-color: var(--pink); }
+    .comparison-head {
+      padding: 20px 24px;
+      background: var(--ink); color: #fff;
+    }
+    .comparison-card.featured .comparison-head { background: var(--pink); }
+    .comparison-head h3 { font-size: 20px; margin-bottom: 4px; }
+    .comparison-head p { font-size: 13px; color: rgba(255,255,255,0.7); }
+    .comparison-body { padding: 20px 24px; }
+    .comparison-body ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .comparison-body ul li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--ink-2);
+    }
+    .comparison-body ul li::before {
+      content: '✓'; font-size: 12px; font-weight: 700;
+      color: var(--pink); background: var(--pink-bg);
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────── */
+    .sidebar { position: sticky; top: calc(var(--nav-h) + 24px); }
+    .sidebar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 20px;
+    }
+    .sidebar-card-head {
+      background: var(--ink); padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .sidebar-card-head h3 { font-size: 18px; color: #fff; }
+    .sidebar-card-head span { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
+    /* ── Treatment areas card ─────────────────────────────── */
+    .areas-group { padding: 16px 24px 16px; border-bottom: 1px solid var(--border); }
+    .areas-group:last-of-type { border-bottom: none; }
+    .areas-group-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted-light); margin-bottom: 12px;
+    }
+    .areas-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .area-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 100px;
+      background: var(--cyan-bg); border: 1px solid var(--cyan);
+      font-size: 13px; font-weight: 500; color: var(--ink-2);
+    }
+    .area-chip svg { flex-shrink: 0; }
+
+    .price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .price-row:last-child { border-bottom: none; }
+    .price-row:hover { background: var(--bg-alt); }
+    .price-row-label { font-size: 14px; color: var(--ink-2); }
+    .price-row-price { font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+    .sidebar-cta { padding: 24px; background: var(--pink-bg); }
+    .sidebar-cta .btn { width: 100%; justify-content: center; }
+
+    .info-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px;
+    }
+    .info-card h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
+    .info-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13.5px; color: var(--ink-2);
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+    }
+    .info-item:last-child { border-bottom: none; }
+    .info-item-icon { font-size: 16px; }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .treatment-hero { padding: 80px 28px 60px; }
+      .treatment-page { padding: 56px 28px; }
+      .treatment-page-inner { grid-template-columns: 1fr; gap: 40px; }
+      .sidebar { position: static; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .comparison { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+      .comparison { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="brand_assets/Lotus.png" alt="Nu-Mee Clinic" />
+    <span class="nav-logo-text">nu-mee</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li>
+      <a href="#" class="active">
+        Treatments
+        <svg class="chevron" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <ul class="nav-dropdown">
+        <li><a href="hifu.html"><span class="dd-icon">🔊</span>HIFU - Skin Tightening</a></li>
+        <li><a href="ems.html"><span class="dd-icon">⚡</span>EMS Body Sculpting</a></li>
+        <li><a href="fat-cavitation.html"><span class="dd-icon">💧</span>Fat Cavitation</a></li>
+      </ul>
+    </li>
+    <li><a href="bookings.html">Bookings</a></li>
+  </ul>
+  <a href="bookings.html" class="nav-cta desktop-only">Book Now</a>
+  <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav">
+  <a href="index.html">Home</a>
+  <div class="mobile-section-label">Treatments</div>
+  <a href="hifu.html">🔊 &nbsp;HIFU - Skin Tightening</a>
+  <a href="ems.html">⚡ &nbsp;EMS Body Sculpting</a>
+  <a href="fat-cavitation.html">💧 &nbsp;Fat Cavitation</a>
+  <a href="bookings.html">Bookings</a>
+  <a href="bookings.html" class="mobile-cta">Book Free Consultation</a>
+</div>
+
+<div class="page-body">
+
+  <!-- Hero -->
+  <section class="treatment-hero">
+    <div class="treatment-hero-inner">
+      <div class="section-label">Skin Tightening & Lifting</div>
+      <h1>HIFU - <span>Lift & Tighten</span></h1>
+      <p class="treatment-hero-sub">High-intensity focused ultrasound stimulates collagen deep within the skin - lifting, firming, and contouring without surgery, needles, or downtime.</p>
+      <div class="treatment-hero-actions">
+        <a href="bookings.html" class="btn btn-primary">Book Free Consultation</a>
+        <a href="#areas" class="btn btn-ghost" style="color:#fff; border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.08);">Treatment Areas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <div class="treatment-page">
+    <div class="treatment-page-inner">
+
+      <!-- Main -->
+      <div class="main-content">
+
+        <div class="content-section reveal">
+          <h2>What is <span>HIFU</span>?</h2>
+          <p>HIFU (High-Intensity Focused Ultrasound) is a non-surgical, non-invasive treatment that uses focused sound waves to heat targeted layers of tissue beneath the skin - stimulating the body's natural collagen production for lasting lift and tightening.</p>
+          <p>Unlike surface-level treatments, HIFU reaches the same tissue layers addressed in surgical facelifts - without any incisions, anaesthesia, or recovery time. The result is a naturally refreshed, lifted appearance that continues to improve over weeks.</p>
+        </div>
+
+        <div class="content-section reveal">
+          <h2>7D HIFU vs <span>12D HIFU</span></h2>
+          <p>We offer both 7D and 12D HIFU - each targeting a different number of tissue depths for varying levels of precision and results.</p>
+          <div class="comparison">
+            <div class="comparison-card reveal reveal-d1">
+              <div class="comparison-head">
+                <h3>7D HIFU</h3>
+                <p>Effective lift & tightening</p>
+              </div>
+              <div class="comparison-body">
+                <ul>
+                  <li>7 cartridge depths</li>
+                  <li>Effective skin lifting</li>
+                  <li>Collagen stimulation</li>
+                  <li>Visible results</li>
+                  <li>Face, neck & body</li>
+                </ul>
+              </div>
+            </div>
+            <div class="comparison-card featured reveal reveal-d2">
+              <div class="comparison-head">
+                <h3>12D HIFU</h3>
+                <p>Enhanced results</p>
+              </div>
+              <div class="comparison-body">
+                <ul>
+                  <li>12 cartridge depths</li>
+                  <li>Greater precision</li>
+                  <li>Deeper collagen remodelling</li>
+                  <li>More pronounced lift</li>
+                  <li>Face, neck & body</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section reveal">
+          <h2>Key <span>Benefits</span></h2>
+          <div class="benefits-grid">
+            <div class="benefit-item reveal reveal-d1">
+              <div class="benefit-icon">🔝</div>
+              <div><h4>Neck & Jawline Tightening</h4><p>Sharpen definition and reduce sagging along the jaw and neck.</p></div>
+            </div>
+            <div class="benefit-item reveal reveal-d2">
+              <div class="benefit-icon">👁️</div>
+              <div><h4>Eye Area Lifting</h4><p>Reduce hooded eyelids and drooping around the eye area.</p></div>
+            </div>
+            <div class="benefit-item reveal reveal-d1">
+              <div class="benefit-icon">✨</div>
+              <div><h4>Fine Line Reduction</h4><p>Smooth fine lines and wrinkles as collagen regenerates.</p></div>
+            </div>
+            <div class="benefit-item reveal reveal-d2">
+              <div class="benefit-icon">🏋️</div>
+              <div><h4>Mid-Face Contouring</h4><p>Lift and define the cheeks for a naturally youthful shape.</p></div>
+            </div>
+            <div class="benefit-item reveal reveal-d1">
+              <div class="benefit-icon">⏱️</div>
+              <div><h4>Zero Downtime</h4><p>Non-invasive - resume normal activities immediately after.</p></div>
+            </div>
+            <div class="benefit-item reveal reveal-d2">
+              <div class="benefit-icon">📈</div>
+              <div><h4>Improving Results</h4><p>Results continue to develop over 2-6 months post-treatment.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section reveal">
+          <h2>How <span>It Works</span></h2>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-text">
+                <h4>Consultation</h4>
+                <p>We assess your skin and goals to choose the right HIFU variant and treatment areas for you.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-text">
+                <h4>Treatment Session (45-60 mins)</h4>
+                <p>A handpiece glides across the treatment area, delivering focused ultrasound energy. You may feel mild warmth - a sign of collagen activation.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-text">
+                <h4>Immediate Glow</h4>
+                <p>Some tightening is visible straight away. Results improve progressively over 2-6 months as new collagen develops.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-text">
+                <h4>Lasting Results</h4>
+                <p>Maximum tightening appears at around 6 months. Annual maintenance treatments help sustain your results.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /main-content -->
+
+      <!-- Sidebar -->
+      <aside class="sidebar" id="areas">
+        <div class="sidebar-card reveal">
+          <div class="sidebar-card-head">
+            <h3>Treatment Areas</h3>
+            <span>7D &amp; 12D HIFU</span>
+          </div>
+          <div class="areas-group">
+            <div class="areas-group-label">Face &amp; Neck</div>
+            <div class="areas-chips">
+              <span class="area-chip"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="var(--pink)" stroke-width="1.3"/><path d="M4 6.5l2 2 3-3" stroke="var(--pink)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Full Face &amp; Neck</span>
+              <span class="area-chip"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="var(--pink)" stroke-width="1.3"/><path d="M4 6.5l2 2 3-3" stroke="var(--pink)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Full Face</span>
+              <span class="area-chip"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="var(--pink)" stroke-width="1.3"/><path d="M4 6.5l2 2 3-3" stroke="var(--pink)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Double Chin</span>
+              <span class="area-chip"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="var(--pink)" stroke-width="1.3"/><path d="M4 6.5l2 2 3-3" stroke="var(--pink)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Upper Lip &amp; Cheeks</span>
+              <span class="area-chip"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="var(--pink)" stroke-width="1.3"/><path d="M4 6.5l2 2 3-3" stroke="var(--pink)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Under Eyes</span>
+              <span class="area-chip"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="var(--pink)" stroke-width="1.3"/><path d="M4 6.5l2 2 3-3" stroke="var(--pink)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Under Eyes + Forehead</span>
+            </div>
+          </div>
+          <div class="areas-group">
+            <div class="areas-group-label">Body</div>
+            <div class="areas-chips">
+              <span class="area-chip"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="var(--pink)" stroke-width="1.3"/><path d="M4 6.5l2 2 3-3" stroke="var(--pink)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Arms</span>
+              <span class="area-chip"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="var(--pink)" stroke-width="1.3"/><path d="M4 6.5l2 2 3-3" stroke="var(--pink)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Stomach</span>
+              <span class="area-chip"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="var(--pink)" stroke-width="1.3"/><path d="M4 6.5l2 2 3-3" stroke="var(--pink)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Thighs</span>
+            </div>
+          </div>
+          <div class="sidebar-cta">
+            <a href="bookings.html" class="btn btn-primary">Book a Free Consultation</a>
+          </div>
+        </div>
+
+        <div class="info-card reveal">
+          <h4>Treatment Details</h4>
+          <div class="info-item"><span class="info-item-icon">⏱️</span> 45-60 minute sessions</div>
+          <div class="info-item"><span class="info-item-icon">✅</span> No downtime</div>
+          <div class="info-item"><span class="info-item-icon">💉</span> No needles or surgery</div>
+          <div class="info-item"><span class="info-item-icon">📅</span> Results last 12-18 months</div>
+          <div class="info-item"><span class="info-item-icon">🆓</span> Free consultation included</div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="brand_assets/Lotus.png" alt="Nu-Mee" />
+        <span class="footer-logo-text">nu-mee clinic</span>
+      </div>
+      <p class="footer-tagline">Expert non-surgical body and skin treatments in Hawthorn, VIC.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/NuMeeClinic" target="_blank" rel="noopener" class="social-btn">f</a>
+        <a href="https://www.instagram.com/numeeclinic" target="_blank" rel="noopener" class="social-btn">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1.5" y="1.5" width="12" height="12" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7.5" cy="7.5" r="2.8" stroke="currentColor" stroke-width="1.3"/><circle cx="11" cy="4" r="0.75" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Treatments</h5>
+      <ul>
+        <li><a href="hifu.html">7D &amp; 12D HIFU</a></li>
+        <li><a href="ems.html">EMS Body Sculpting</a></li>
+        <li><a href="fat-cavitation.html">Fat Cavitation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Clinic</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="bookings.html">Book Appointment</a></li>
+        <li><a href="tel:0457455629">0457 455 629</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Hours</h5>
+      <ul class="footer-hours">
+        <li><span>Mon - Sat</span><span>9am - 6pm</span></li>
+        <li><span>Sunday</span><span style="color:rgba(255,255,255,0.3)">Closed</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Nu-Mee Clinic. All Rights Reserved.</p>
+    <p class="footer-address">591 Burwood Road, Hawthorn VIC 3122 · <a href="tel:0457455629">0457 455 629</a></p>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

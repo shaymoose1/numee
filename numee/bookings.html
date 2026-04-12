@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book an Appointment - Nu-Mee Clinic | Hawthorn VIC</title>
+  <meta name="description" content="Book a free consultation or appointment at Nu-Mee Clinic in Hawthorn. Call or text Lana on 0457 455 629, or fill in the enquiry form." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .bookings-hero {
+      background: linear-gradient(135deg, var(--ink) 0%, #2D1828 100%);
+      padding: 100px 56px 80px; position: relative; overflow: hidden;
+    }
+    .bookings-hero::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,25,106,0.1) 0%, transparent 70%);
+    }
+    .bookings-hero-inner { max-width: 680px; position: relative; z-index: 1; }
+    .bookings-hero h1 { font-size: clamp(36px,4.5vw,60px); color: #fff; margin-bottom: 18px; }
+    .bookings-hero h1 span { color: var(--pink-light); }
+    .bookings-hero p { font-size: 17px; line-height: 1.75; color: rgba(255,255,255,0.65); max-width: 520px; }
+
+    .bookings-section { padding: 80px 56px; }
+    .bookings-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: stretch;
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    /* ── Storefront photo ────────────────────────────────── */
+    .storefront-photo {
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      height: 220px;
+    }
+    .storefront-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── Form ────────────────────────────────────────────── */
+    .booking-form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+    /* Success overlay */
+    .form-success-overlay {
+      position: absolute; inset: 0;
+      background: var(--white);
+      border-radius: var(--r-lg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 16px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1);
+      z-index: 10;
+    }
+    .form-success-overlay.show { opacity: 1; pointer-events: auto; }
+    .success-circle {
+      width: 80px; height: 80px;
+      background: #e8f7ee;
+      border: 3px solid #2ecc71;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .success-circle svg { width: 38px; height: 38px; }
+    .success-title { font-size: 22px; font-weight: 700; color: var(--ink); }
+    .success-sub { font-size: 15px; color: var(--muted); text-align: center; max-width: 260px; line-height: 1.6; }
+    .form-card-head {
+      background: var(--pink); padding: 28px 36px;
+    }
+    .form-card-head h2 { font-size: 24px; color: #fff; margin-bottom: 4px; }
+    .form-card-head p { font-size: 14px; color: rgba(255,255,255,0.78); }
+    .form-card-body { padding: 36px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+    .form-label {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-input, .form-select, .form-textarea {
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-alt);
+      font-family: var(--font); font-size: 15px;
+      color: var(--ink);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      outline: none; width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px rgba(232,25,106,0.1);
+      background: var(--white);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--muted-light); }
+    .form-textarea { resize: vertical; min-height: 110px; }
+    .form-note {
+      font-size: 12.5px; color: var(--ink-2);
+      background: rgba(198,242,244,0.35);
+      border: 1.5px solid var(--cyan);
+      border-left: 4px solid var(--cyan-dark);
+      border-radius: 8px;
+      padding: 10px 14px; margin-bottom: 20px;
+      line-height: 1.5; font-weight: 500;
+    }
+    .form-submit {
+      width: 100%; justify-content: center;
+      padding: 16px; font-size: 15px;
+    }
+
+    /* ── Contact info side ───────────────────────────────── */
+    .contact-side { display: flex; flex-direction: column; gap: 16px; justify-content: space-between; }
+    .contact-info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-info-card h3 { font-size: 20px; color: var(--ink); margin-bottom: 20px; }
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 15px; color: var(--ink-2); line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .contact-detail:last-child { margin-bottom: 0; }
+    .contact-detail-icon {
+      width: 42px; height: 42px; min-width: 42px;
+      background: var(--cyan-bg); border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px;
+    }
+    .contact-detail a { color: var(--pink); font-weight: 600; }
+
+    .hours-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    .hours-card h3 { font-size: 16px; font-weight: 700; color: var(--ink); padding: 16px 24px 10px; }
+    .hours-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 24px; border-top: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .hours-row .day { color: var(--muted); }
+    .hours-row .time { font-weight: 600; color: var(--ink); }
+    .hours-row .closed { color: var(--muted-light); font-weight: 400; }
+
+    .social-links-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 24px;
+    }
+    .social-links-card h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
+    .social-btns { display: flex; gap: 12px; }
+    .social-link-btn {
+      display: flex; align-items: center; gap: 9px;
+      padding: 10px 18px;
+      background: var(--bg-alt); border: 1px solid var(--border);
+      border-radius: 100px; font-size: 14px; font-weight: 600;
+      color: var(--ink-2);
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .social-link-btn:hover {
+      background: var(--cyan-bg); border-color: var(--cyan);
+      transform: translateY(-1px);
+    }
+
+    /* ── Map ─────────────────────────────────────────────── */
+    .map-section { padding: 0 56px 80px; }
+    .map-section-inner { max-width: 1100px; margin: 0 auto; }
+    .map-section h2 { font-size: clamp(24px,2.5vw,34px); color: var(--ink); margin-bottom: 24px; }
+    .map-section h2 span { color: var(--pink); }
+    .map-wrap {
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: var(--shadow-md); border: 1px solid var(--border);
+    }
+    .map-wrap iframe { display: block; width: 100%; height: 460px; }
+
+    @media (max-width: 1024px) {
+      .bookings-hero { padding: 80px 28px 60px; }
+      .bookings-section { padding: 56px 28px; }
+      .bookings-inner { grid-template-columns: 1fr; gap: 40px; }
+      .map-section { padding: 0 28px 56px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo"><img src="brand_assets/Lotus.png" alt="Nu-Mee Clinic" /><span class="nav-logo-text">nu-mee</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li>
+      <a href="#">Treatments <svg class="chevron" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <ul class="nav-dropdown">
+        <li><a href="hifu.html"><span class="dd-icon">🔊</span>HIFU - Skin Tightening</a></li>
+        <li><a href="ems.html"><span class="dd-icon">⚡</span>EMS Body Sculpting</a></li>
+        <li><a href="fat-cavitation.html"><span class="dd-icon">💧</span>Fat Cavitation</a></li>
+      </ul>
+    </li>
+    <li><a href="bookings.html" class="active">Bookings</a></li>
+  </ul>
+  <a href="bookings.html" class="nav-cta desktop-only">Book Now</a>
+  <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav">
+  <a href="index.html">Home</a>
+  <div class="mobile-section-label">Treatments</div>
+  <a href="hifu.html">🔊 &nbsp;HIFU - Skin Tightening</a>
+  <a href="ems.html">⚡ &nbsp;EMS Body Sculpting</a>
+  <a href="fat-cavitation.html">💧 &nbsp;Fat Cavitation</a>
+  <a href="bookings.html">Bookings</a>
+  <a href="bookings.html" class="mobile-cta">Book Now</a>
+</div>
+
+<div class="page-body">
+
+  <section class="bookings-hero">
+    <div class="bookings-hero-inner">
+      <div class="section-label" style="color:var(--pink-light)">Book an Appointment</div>
+      <h1>General <span>Enquiries</span></h1>
+      <p>Fill in the form and Lana will respond as soon as possible - usually via text. Free consultations are always available.</p>
+    </div>
+  </section>
+
+  <section class="bookings-section">
+    <div class="bookings-inner">
+
+      <!-- Form -->
+      <div class="booking-form-card reveal">
+        <div class="form-card-head">
+          <h2>Send an Enquiry</h2>
+          <p>We will respond ASAP - usually via text message</p>
+        </div>
+        <div class="form-card-body">
+          <form id="enquiry-form" onsubmit="handleSubmit(event)" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="fullname">Full Name *</label>
+              <input id="fullname" type="text" class="form-input" placeholder="Emma Smith" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input id="email" type="email" class="form-input" placeholder="emma@example.com" required />
+              <span id="email-error" style="display:none;font-size:12px;color:#d0294a;margin-top:3px;">Please enter a valid email address.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Contact Number *</label>
+              <input id="phone" type="tel" class="form-input" placeholder="0400 000 000" required />
+              <span id="phone-error" style="display:none;font-size:12px;color:#d0294a;margin-top:3px;">Please enter a valid 10-digit Australian phone number.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="treatment">Treatment of Interest</label>
+              <select id="treatment" class="form-select">
+                <option value="">Select a treatment...</option>
+                <option>HIFU - Skin Tightening</option>
+                <option>EMS Body Sculpting</option>
+                <option>Fat Cavitation</option>
+                <option>Ladies Massage</option>
+                <option>Free Consultation (not sure yet)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="enquiry">Enquiry *</label>
+              <textarea id="enquiry" class="form-textarea" placeholder="Include your preferred date and time, and anything else you'd like to ask or mention…" required></textarea>
+            </div>
+
+            <p style="font-size:12px; color:var(--muted); margin-bottom:16px; line-height:1.5; white-space:nowrap;">📱 We will respond via text - please ensure your contact number is correct.</p>
+            <button type="submit" class="btn btn-primary form-submit">Send Enquiry →</button>
+          </form>
+        </div>
+        <!-- Success overlay -->
+        <div class="form-success-overlay" id="success-overlay">
+          <div class="success-circle">
+            <svg viewBox="0 0 38 38" fill="none"><path d="M11 19.5l5.5 5.5 10.5-11" stroke="#2ecc71" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="success-title">Enquiry Sent!</p>
+          <p class="success-sub">We will be in touch shortly - usually via text message.</p>
+        </div>
+      </div>
+
+      <!-- Contact info -->
+      <div class="contact-side">
+        <div class="contact-info-card reveal">
+          <h3>Contact Details</h3>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📍</div>
+            <div>591 Burwood Road<br>Hawthorn VIC 3122</div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📞</div>
+            <div>
+              <a href="tel:0457455629">0457 455 629</a><br>
+              <small style="color:var(--muted); font-size:13px;">Call or text Lana directly</small>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">✉️</div>
+            <div><a href="mailto:numeeclinic@gmail.com">numeeclinic@gmail.com</a><br><small style="color:var(--muted); font-size:13px;">Send us an email anytime</small></div>
+          </div>
+        </div>
+
+        <div class="hours-card reveal">
+          <h3>Opening Hours</h3>
+          <div class="hours-row"><span class="day">Monday</span><span class="time">10:00 AM - 6:00 PM</span></div>
+          <div class="hours-row"><span class="day">Tuesday</span><span class="time">10:00 AM - 6:00 PM</span></div>
+          <div class="hours-row"><span class="day">Wednesday</span><span class="time">10:00 AM - 6:00 PM</span></div>
+          <div class="hours-row"><span class="day">Thursday</span><span class="time">10:00 AM - 6:00 PM</span></div>
+          <div class="hours-row"><span class="day">Friday</span><span class="time">10:00 AM - 6:00 PM</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span class="time">10:00 AM - 6:00 PM</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="closed">Closed</span></div>
+        </div>
+
+        <div class="social-links-card reveal">
+          <h3>Follow Nu-Mee Clinic</h3>
+          <div class="social-btns">
+            <a href="https://www.facebook.com/NuMeeClinic" target="_blank" rel="noopener" class="social-link-btn">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M9 8h2.5l.5-2.5H9V4c0-.7.3-1 1-1h2V1h-2C8.3 1 7 2.3 7 4.5V5.5H5V8h2v7h2V8z" fill="currentColor"/></svg>
+              Facebook
+            </a>
+            <a href="https://www.instagram.com/numeeclinic" target="_blank" rel="noopener" class="social-link-btn">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="3.5" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.4"/><circle cx="11.5" cy="4.5" r="0.75" fill="currentColor"/></svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="map-section">
+    <div class="map-section-inner">
+      <h2 class="reveal">Find <span>Nu-Mee Clinic</span></h2>
+      <div class="map-wrap reveal">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.574430502729!2d145.043679!3d-37.823436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad643c4c8e83ce9%3A0x79b8c5b0dbd4477!2sNu-Mee%20Clinic!5e0!3m2!1sen!2sau!4v1775710698303!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><img src="brand_assets/Lotus.png" alt="Nu-Mee" /><span class="footer-logo-text">nu-mee clinic</span></div>
+      <p class="footer-tagline">Expert non-surgical body and skin treatments in Hawthorn, VIC.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/NuMeeClinic" target="_blank" rel="noopener" class="social-btn">f</a>
+        <a href="https://www.instagram.com/numeeclinic" target="_blank" rel="noopener" class="social-btn"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1.5" y="1.5" width="12" height="12" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7.5" cy="7.5" r="2.8" stroke="currentColor" stroke-width="1.3"/><circle cx="11" cy="4" r="0.75" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col"><h5>Treatments</h5><ul><li><a href="hifu.html">7D &amp; 12D HIFU</a></li><li><a href="ems.html">EMS Body Sculpting</a></li><li><a href="fat-cavitation.html">Fat Cavitation</a></li></ul></div>
+    <div class="footer-col"><h5>Clinic</h5><ul><li><a href="index.html">Home</a></li><li><a href="bookings.html">Book Appointment</a></li><li><a href="tel:0457455629">0457 455 629</a></li></ul></div>
+    <div class="footer-col"><h5>Hours</h5><ul class="footer-hours"><li><span>Mon - Sat</span><span>10am - 6pm</span></li><li><span>Sunday</span><span style="color:rgba(255,255,255,0.3)">Closed</span></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Nu-Mee Clinic. All Rights Reserved.</p>
+    <p class="footer-address">591 Burwood Road, Hawthorn VIC 3122 · <a href="tel:0457455629">0457 455 629</a></p>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  let valid = true;
+
+  // Email validation
+  const email = document.getElementById('email');
+  const emailErr = document.getElementById('email-error');
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRe.test(email.value.trim())) {
+    email.style.borderColor = '#d0294a';
+    emailErr.style.display = 'block';
+    valid = false;
+  } else {
+    email.style.borderColor = '';
+    emailErr.style.display = 'none';
+  }
+
+  // Phone validation: 10 digits (Australian mobile/landline), spaces/hyphens allowed
+  const phone = document.getElementById('phone');
+  const phoneErr = document.getElementById('phone-error');
+  const digits = phone.value.replace(/[\s\-()]/g, '');
+  if (!/^\d{10}$/.test(digits)) {
+    phone.style.borderColor = '#d0294a';
+    phoneErr.style.display = 'block';
+    valid = false;
+  } else {
+    phone.style.borderColor = '';
+    phoneErr.style.display = 'none';
+  }
+
+  if (!valid) return;
+
+  // Show success overlay
+  document.getElementById('success-overlay').classList.add('show');
+}
+</script>
+</body>
+</html>
