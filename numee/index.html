@@ -447,7 +447,23 @@
       .hero-stat { padding: 16px 16px; }
       .hero-stat-num { font-size: 24px; }
       .treatments-grid { grid-template-columns: 1fr; }
-      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px;
+        padding-bottom: 16px;
+        margin: 0 -28px;
+        padding-left: 28px;
+        padding-right: 28px;
+      }
+      .reviews-grid::-webkit-scrollbar { display: none; }
+      .reviews-grid .review-card {
+        flex: 0 0 82vw;
+        max-width: 320px;
+        scroll-snap-align: start;
+      }
       .hero-stats { flex-wrap: wrap; }
     }
   </style>
