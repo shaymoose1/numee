@@ -241,23 +241,25 @@
         </div>
         <div class="form-card-body">
           <form id="enquiry-form" onsubmit="handleSubmit(event)" novalidate>
+            <input type="hidden" name="access_key" value="2b62e557-0730-4aa7-82d4-1b52afcf91d4">
+            <input type="hidden" name="subject" value="New Enquiry - Nu-Mee Clinic">
             <div class="form-group">
               <label class="form-label" for="fullname">Full Name *</label>
-              <input id="fullname" type="text" class="form-input" placeholder="Emma Smith" required />
+              <input id="fullname" name="name" type="text" class="form-input" placeholder="Emma Smith" required />
             </div>
             <div class="form-group">
               <label class="form-label" for="email">Email Address *</label>
-              <input id="email" type="email" class="form-input" placeholder="emma@example.com" required />
+              <input id="email" name="email" type="email" class="form-input" placeholder="emma@example.com" required />
               <span id="email-error" style="display:none;font-size:12px;color:#d0294a;margin-top:3px;">Please enter a valid email address.</span>
             </div>
             <div class="form-group">
               <label class="form-label" for="phone">Contact Number *</label>
-              <input id="phone" type="tel" class="form-input" placeholder="0400 000 000" required />
+              <input id="phone" name="phone" type="tel" class="form-input" placeholder="0400 000 000" required />
               <span id="phone-error" style="display:none;font-size:12px;color:#d0294a;margin-top:3px;">Please enter a valid 10-digit Australian phone number.</span>
             </div>
             <div class="form-group">
               <label class="form-label" for="treatment">Treatment of Interest</label>
-              <select id="treatment" class="form-select">
+              <select id="treatment" name="treatment" class="form-select">
                 <option value="">Select a treatment...</option>
                 <option>HIFU - Skin Tightening</option>
                 <option>EMS Body Sculpting</option>
@@ -268,7 +270,7 @@
             </div>
             <div class="form-group">
               <label class="form-label" for="enquiry">Enquiry *</label>
-              <textarea id="enquiry" class="form-textarea" placeholder="Include your preferred date and time, and anything else you'd like to ask or mention…" required></textarea>
+              <textarea id="enquiry" name="message" class="form-textarea" placeholder="Include your preferred date and time, and anything else you'd like to ask or mention…" required></textarea>
             </div>
 
             <p style="font-size:12px; color:var(--muted); margin-bottom:16px; line-height:1.5; white-space:nowrap;">📱 We will respond via text - please ensure your contact number is correct.</p>
@@ -407,7 +409,7 @@ function handleSubmit(e) {
   btn.disabled = true;
 
   const data = new FormData(e.target);
-  fetch('https://formspree.io/f/YOUR_FORM_ID', {
+  fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     body: data,
     headers: { 'Accept': 'application/json' }
