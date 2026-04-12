@@ -191,11 +191,14 @@
       gap: 24px;
     }
     .treatment-card {
+      display: block;
+      text-decoration: none;
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--r-lg);
       overflow: hidden;
       transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease;
+      cursor: pointer;
     }
     .treatment-card:hover {
       transform: translateY(-6px);
@@ -229,25 +232,17 @@
       color: var(--muted); margin-bottom: 22px;
     }
     .treatment-card-footer {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: flex-end;
       padding-top: 20px;
       border-top: 1px solid var(--border);
-    }
-    .treatment-card-price { font-size: 13px; color: var(--muted); }
-    .treatment-card-price strong {
-      display: block; font-size: 26px; font-weight: 700;
-      color: var(--ink); letter-spacing: -0.02em; line-height: 1;
     }
     .treatment-card-link {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 13.5px; font-weight: 600;
       color: var(--pink);
-      padding: 9px 18px;
-      background: var(--pink-bg);
-      border-radius: 100px;
-      transition: background 0.2s, gap 0.2s;
+      transition: gap 0.2s;
     }
-    .treatment-card-link:hover { background: rgba(232,25,106,0.15); gap: 8px; }
+    .treatment-card:hover .treatment-card-link { gap: 8px; }
 
     /* ── Why Nu-Mee ──────────────────────────────────────── */
     .why-section {
@@ -545,7 +540,7 @@
       <p class="treatments-desc reveal">All treatments are non-invasive, clinically proven, and tailored to your goals. Results you can see - no surgery required.</p>
     </div>
     <div class="treatments-grid">
-      <div class="treatment-card reveal reveal-d1">
+      <a href="/hifu" class="treatment-card reveal reveal-d1">
         <div class="treatment-card-img">
           <img src="brand_assets/Hifu.png" alt="HIFU Skin Tightening treatment">
         </div>
@@ -554,15 +549,15 @@
           <h3 class="treatment-card-name">7D &amp; 12D HIFU</h3>
           <p class="treatment-card-desc">High-intensity focused ultrasound lifts, tightens, and contours skin without surgery. The non-surgical facelift.</p>
           <div class="treatment-card-footer">
-            <a href="/hifu" class="treatment-card-link">
+            <span class="treatment-card-link">
               Learn more
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            </span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="treatment-card reveal reveal-d2">
+      <a href="/ems" class="treatment-card reveal reveal-d2">
         <div class="treatment-card-img">
           <img src="brand_assets/EMS-BODY.jpg" alt="EMS Body Sculpting treatment">
         </div>
@@ -571,15 +566,15 @@
           <h3 class="treatment-card-name">EMS Body Sculpting</h3>
           <p class="treatment-card-desc">Electrical muscle stimulation tones and builds muscle while burning fat - like thousands of reps without the effort.</p>
           <div class="treatment-card-footer">
-            <a href="/ems" class="treatment-card-link">
+            <span class="treatment-card-link">
               Learn more
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            </span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="treatment-card reveal reveal-d3">
+      <a href="/fat-cavitation" class="treatment-card reveal reveal-d3">
         <div class="treatment-card-img">
           <img src="brand_assets/Fat-Cavitation-Web.png" alt="Fat Cavitation treatment">
         </div>
@@ -588,13 +583,13 @@
           <h3 class="treatment-card-name">Fat Cavitation</h3>
           <p class="treatment-card-desc">Ultrasonic waves break down stubborn fat deposits for a slimmer, smoother contour - no needles, no surgery.</p>
           <div class="treatment-card-footer">
-            <a href="/fat-cavitation" class="treatment-card-link">
+            <span class="treatment-card-link">
               Learn more
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            </span>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
