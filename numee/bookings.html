@@ -241,8 +241,6 @@
         </div>
         <div class="form-card-body">
           <form id="enquiry-form" onsubmit="handleSubmit(event)" novalidate>
-            <input type="hidden" name="access_key" value="2b62e557-0730-4aa7-82d4-1b52afcf91d4">
-            <input type="hidden" name="subject" value="New Enquiry - Nu-Mee Clinic">
             <div class="form-group">
               <label class="form-label" for="fullname">Full Name *</label>
               <input id="fullname" name="name" type="text" class="form-input" placeholder="Emma Smith" required />
@@ -403,16 +401,20 @@ function handleSubmit(e) {
 
   if (!valid) return;
 
-  // Submit to Formspree
   const btn = document.querySelector('.form-submit');
   btn.textContent = 'Sending…';
   btn.disabled = true;
 
-  const data = new FormData(e.target);
-  fetch('https://api.web3forms.com/submit', {
+  fetch('/api/submit', {
     method: 'POST',
-    body: data,
-    headers: { 'Accept': 'application/json' }
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: document.getElementById('fullname').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      treatment: document.getElementById('treatment').value,
+      message: document.getElementById('enquiry').value
+    })
   })
   .then(res => {
     if (res.ok) {
