@@ -19,7 +19,7 @@ html { scroll-behavior: smooth; }
   --ink:         #1A0F15;
   --ink-2:       #3D2A35;
   --muted:       #8C7A83;
-  --muted-light: #BDB0B6;
+  --muted-light: #9A8A92;
   --border:      rgba(26,15,21,0.09);
   --white:       #FFFFFF;
   --bg-alt:      #EDF9FA;
@@ -390,8 +390,8 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 12px;
 }
-.footer-copy { font-size: 12.5px; color: rgba(255,255,255,0.28); }
-.footer-address { font-size: 12.5px; color: rgba(255,255,255,0.28); }
+.footer-copy { font-size: 12.5px; color: rgba(255,255,255,0.55); }
+.footer-address { font-size: 12.5px; color: rgba(255,255,255,0.55); }
 .footer-address a { color: var(--pink-light); }
 
 /* ── Reveal animation ────────────────────────────────────── */
