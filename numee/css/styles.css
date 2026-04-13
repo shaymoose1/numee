@@ -18,7 +18,7 @@ html { scroll-behavior: smooth; }
   --cyan-bg:     #EDF9FA;
   --ink:         #1A0F15;
   --ink-2:       #3D2A35;
-  --muted:       #8C7A83;
+  --muted:       #7A6870; /* darkened: 4.76:1 on white (was #8C7A83 = 4.03:1, failed WCAG AA) */
   --muted-light: #9A8A92;
   --border:      rgba(26,15,21,0.09);
   --white:       #FFFFFF;
@@ -319,7 +319,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
   letter-spacing: 0.12em; text-transform: uppercase;
   padding: 4px 11px; border-radius: 100px;
 }
-.tag-pink { background: rgba(232,25,106,0.1); color: var(--pink); }
+.tag-pink { background: rgba(232,25,106,0.1); color: var(--pink-dark); } /* darkened: 4.97:1 on light-pink bg */
 .tag-cyan { background: var(--cyan-bg); color: #0a7a83; } /* darkened for 4.5:1 contrast on cyan-bg */
 
 /* ── FOOTER ──────────────────────────────────────────────── */
