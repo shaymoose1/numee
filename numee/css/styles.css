@@ -105,7 +105,7 @@ a { color: inherit; text-decoration: none; }
 .nav-links > li > a:hover,
 .nav-links > li > a.active {
   background: var(--cyan-bg);
-  color: var(--pink);
+  color: var(--pink-dark); /* #C4125A: 4.93:1 on cyan-bg (was --pink = 4.17:1, failed WCAG AA) */
 }
 .nav-links .chevron {
   width: 12px; height: 12px;
@@ -263,7 +263,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--pink);
+  color: var(--pink-dark); /* #C4125A: 5.74:1 on white (was --pink = 4.39:1, failed WCAG AA at 11px) */
   margin-bottom: 16px;
 }
 .section-label::before {
@@ -384,7 +384,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
   display: flex; justify-content: space-between;
   font-size: 13.5px;
 }
-.footer-hours li:nth-child(n) span:first-child { color: rgba(255,255,255,0.42); }
+.footer-hours li:nth-child(n) span:first-child { color: rgba(255,255,255,0.60); } /* was 0.42: ~4.32:1 on ink, now ~7.2:1 */
 .footer-hours li:nth-child(n) span:last-child { color: rgba(255,255,255,0.78); font-weight: 500; }
 .footer-bottom {
   display: flex; align-items: center; justify-content: space-between;
