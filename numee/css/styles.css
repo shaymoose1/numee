@@ -320,7 +320,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
   padding: 4px 11px; border-radius: 100px;
 }
 .tag-pink { background: rgba(232,25,106,0.1); color: var(--pink); }
-.tag-cyan { background: var(--cyan-bg); color: var(--cyan-dark); }
+.tag-cyan { background: var(--cyan-bg); color: #0a7a83; } /* darkened for 4.5:1 contrast on cyan-bg */
 
 /* ── FOOTER ──────────────────────────────────────────────── */
 .site-footer {
@@ -376,7 +376,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
 }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
 .footer-col ul li a {
-  font-size: 14px; color: rgba(255,255,255,0.42);
+  font-size: 14px; color: rgba(255,255,255,0.62);
   transition: color 0.2s;
 }
 .footer-col ul li a:hover { color: rgba(255,255,255,0.88); }
@@ -392,7 +392,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
 }
 .footer-copy { font-size: 12.5px; color: rgba(255,255,255,0.55); }
 .footer-address { font-size: 12.5px; color: rgba(255,255,255,0.55); }
-.footer-address a { color: var(--pink-light); }
+.footer-address a { color: var(--pink-light); text-decoration: underline; }
 
 /* ── Reveal animation ────────────────────────────────────── */
 .reveal {
