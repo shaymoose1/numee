@@ -63,6 +63,7 @@
   }
   </script>
   <link rel="icon" type="image/png" href="brand_assets/Lotus.png" />
+  <link rel="preload" as="image" href="brand_assets/IMG_0291.jpg" fetchpriority="high" />
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     /* ── Hero ─────────────────────────────────────────────── */
@@ -77,7 +78,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://www.numeeclinic.com.au/wp-content/uploads/2021/02/home1.png');
+      background-image: url('brand_assets/IMG_0291.jpg');
       background-size: cover;
       background-position: center top;
       transform: scale(1.04);
@@ -310,7 +311,7 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 20px;
     }
-    .why-feature h4 {
+    .why-feature h3 {
       font-size: 15px; font-weight: 600; color: var(--ink);
       margin-bottom: 4px;
     }
@@ -475,7 +476,7 @@
 <!-- ═══ NAV ═══ -->
 <nav class="site-nav">
   <a href="/" class="nav-logo">
-    <img src="brand_assets/Lotus.png" alt="Nu-Mee Clinic" />
+    <img src="brand_assets/Lotus.png" alt="Nu-Mee Clinic" width="36" height="36" />
     <span class="nav-logo-text">nu-mee</span>
   </a>
 
@@ -564,7 +565,7 @@
     <div class="treatments-grid">
       <a href="/hifu" class="treatment-card reveal reveal-d1">
         <div class="treatment-card-img">
-          <img src="brand_assets/Hifu.png" alt="HIFU Skin Tightening treatment">
+          <img src="brand_assets/Hifu.png" alt="HIFU Skin Tightening treatment" width="600" height="220" loading="lazy" decoding="async">
         </div>
         <div class="treatment-card-body">
           <div class="treatment-card-tag"><span class="tag tag-pink">Face &amp; Neck</span></div>
@@ -581,7 +582,7 @@
 
       <a href="/ems" class="treatment-card reveal reveal-d2">
         <div class="treatment-card-img">
-          <img src="brand_assets/EMS-BODY.jpg" alt="EMS Body Sculpting treatment">
+          <img src="brand_assets/EMS-BODY.jpg" alt="EMS Body Sculpting treatment" width="600" height="220" loading="lazy" decoding="async">
         </div>
         <div class="treatment-card-body">
           <div class="treatment-card-tag"><span class="tag tag-cyan">Body Sculpting</span></div>
@@ -598,7 +599,7 @@
 
       <a href="/fat-cavitation" class="treatment-card reveal reveal-d3">
         <div class="treatment-card-img">
-          <img src="brand_assets/Fat-Cavitation-Web.png" alt="Fat Cavitation treatment">
+          <img src="brand_assets/Fat-Cavitation-Web.png" alt="Fat Cavitation treatment" width="600" height="220" loading="lazy" decoding="async">
         </div>
         <div class="treatment-card-body">
           <div class="treatment-card-tag"><span class="tag tag-cyan">Fat Reduction</span></div>
@@ -620,7 +621,7 @@
     <div class="why-inner">
       <div class="why-img-block reveal">
         <div class="why-img-card">
-          <img src="brand_assets/IMG_0291.jpg" alt="Nu-Mee Clinic storefront at 591 Burwood Road, Hawthorn" />
+          <img src="brand_assets/IMG_0291.jpg" alt="Nu-Mee Clinic storefront at 591 Burwood Road, Hawthorn" width="600" height="700" loading="lazy" decoding="async" />
         </div>
         <div class="why-chip">
           <strong>100%</strong>
@@ -636,21 +637,21 @@
           <div class="why-feature reveal reveal-d1">
             <div class="why-feature-icon">🎯</div>
             <div>
-              <h4>Clinically Proven Technology</h4>
+              <h3>Clinically Proven Technology</h3>
               <p>Medical-grade 7D and 12D HIFU, EMS, and cavitation devices - the same technology used in leading clinics worldwide.</p>
             </div>
           </div>
           <div class="why-feature reveal reveal-d2">
             <div class="why-feature-icon">✨</div>
             <div>
-              <h4>Zero Downtime</h4>
+              <h3>Zero Downtime</h3>
               <p>All treatments are non-invasive. Walk in, walk out - back to your day feeling refreshed and confident.</p>
             </div>
           </div>
           <div class="why-feature reveal reveal-d3">
             <div class="why-feature-icon">💬</div>
             <div>
-              <h4>Free Consultations</h4>
+              <h3>Free Consultations</h3>
               <p>We offer complimentary consultations to understand your goals and recommend the right plan - no pressure, no obligation.</p>
             </div>
           </div>
@@ -740,7 +741,7 @@
         <a href="/bookings" class="btn btn-primary">Book an Appointment</a>
       </div>
       <div class="location-map reveal reveal-d1">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.574430502729!2d145.043679!3d-37.823436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad643c4c8e83ce9%3A0x79b8c5b0dbd4477!2sNu-Mee%20Clinic!5e0!3m2!1sen!2sau!4v1775710698303!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.574430502729!2d145.043679!3d-37.823436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad643c4c8e83ce9%3A0x79b8c5b0dbd4477!2sNu-Mee%20Clinic!5e0!3m2!1sen!2sau!4v1775710698303!5m2!1sen!2sau" title="Nu-Mee Clinic location on Google Maps" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -761,7 +762,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo">
-        <img src="brand_assets/Lotus.png" alt="Nu-Mee" />
+        <img src="brand_assets/Lotus.png" alt="Nu-Mee" width="32" height="32" loading="lazy" />
         <span class="footer-logo-text">nu-mee clinic</span>
       </div>
       <p class="footer-tagline">Expert non-surgical body and skin treatments in Hawthorn, VIC. Helping you look and feel your most confident self.</p>
