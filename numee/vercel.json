@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/treatments", "destination": "/#treatments", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
