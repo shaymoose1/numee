@@ -146,7 +146,7 @@ module.exports = async function handler(req, res) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
-      from: 'Nu-Mee Clinic <onboarding@resend.dev>',
+      from: 'Nu-Mee Clinic <noreply@numeeclinic.com.au>',
       to: process.env.RESEND_TO_EMAIL,
       reply_to: email.trim(),
       subject: `New Enquiry - Nu-Mee Clinic${treatment ? ` (${treatment})` : ''}`,
